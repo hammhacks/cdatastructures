@@ -13,21 +13,39 @@ void *initialize_stack(node **stack_input){
 	return stack_input;
 }
 
+bool empty(node **stack){
+	if(stack[0] == NULL)
+		return true;
+	else
+		return false;
+}	
 
 int peek(node **stack){
-	int i=0;
-	while(stack[i] != NULL){
-		printf("stack[%d] is: %p\n",i,stack[i]);
-		i++;
-	}
+	if(empty(stack))
+		return -1;
+	else{
+		int i=0;
+		while(stack[i] != NULL){
+			//printf("stack[%d] is: %p\n",i,stack[i]);
+			i++;
+		}
 		node *return_node = stack[--i];
-	printf("the top is: %p with %d\n",return_node,return_node->num);
 
-	return i;
+		return i;
+	}
+}
+
+void print_top(node **stack){
+	if(peek(stack) == -1)
+		printf("The stack is empty.\n");
+	else
+		printf("The top is: %p with %d\n",stack[peek(stack)],stack[peek(stack)]->num);
+
 
 }
 
 void push(node **stack,  int input_number){
+	printf("Node with int \"%d\" is being pushed onto the stack...\n",input_number);
 	int next = 1 + peek(stack);
 	stack[next] = malloc(sizeof(node));
 	stack[next]-> num = input_number;
@@ -35,21 +53,29 @@ void push(node **stack,  int input_number){
 	
 }
 
+node *pop(node **stack){
+	if(empty(stack))
+		return stack[0];
+	else{
+		int stack_top=peek(stack);
+		node *return_node = stack[stack_top];
+		printf("Node with value \"%d\" is being popped...\n",return_node->num);
+		free(stack[stack_top]);
+		stack[stack_top] = NULL;
+		return return_node;
+	}
+
+}
 
 int main(){
 	node **stack;
 	stack = initialize_stack(stack);
-	printf("The stack has address of: %p\n",stack);
-	
-	stack[0] = malloc(sizeof(node));
-	stack[0] -> num = 2;
-
-	//stack[1] = malloc(sizeof(node));
-	//stack[1] -> num = 3;
-	
 	push(stack,23); 
-
-	peek(stack);
-	
+	push(stack,24);
+	print_top(stack);
+	pop(stack);
+	print_top(stack);
+	push(stack,58);
+	print_top(stack);
 	return 0;
 }
