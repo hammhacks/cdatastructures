@@ -1,34 +1,22 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
+
+int main(int argc, char **argv){
+	char *name = "Jeff";
+
+	char *name2 = malloc(sizeof(char*)*5);
+
+	strncpy(name2,name,5);
+	printf("Name is: %s\n",name2);
+	printf("Name flow: %s\n",name2[0]);
+
+	int *x;
+	x = malloc(sizeof(int*));
+	*x=7;
+
+	printf("x is: %d\n",*x);
 
 
-typedef struct silly{
-	int a;
-	int b;
-	char *name;
-}silly;
-
-int main(){
-	int x=5;
-	int *y=malloc(sizeof(x));
-
-	y=&x;
-
-	printf("y is: %d\n",*y);
-
-	struct silly *alpha = malloc(sizeof(struct silly));
-	struct silly *beta = malloc(sizeof(struct silly));
-
-	alpha->a=20;
-	alpha->b=21;
-	alpha->name = "Jeff Hammondiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
-
-	beta->a=30;
-	beta->b=31;
-	beta->name  = "Jessica Hammond";
-
-	printf("The struct is of size: %d\n",sizeof(struct silly*));
-
-	printf("beta name is: %s\n",beta->name);
 	return 0;
 }
