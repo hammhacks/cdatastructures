@@ -28,6 +28,14 @@ int main(){
 
     printf("val2: %c\n",val2);
     printf("val2: %d\n",val2);
+
+    printf("buf info:\n");
+    int i;
+    for(i=0;i<30;i++)
+	printf("buf[%d]: %p : val: %d\n",i,&buf[i],buf[i]);
+
+    printf("address at val2 is: %p\n",&val2);
+
     return 0;
 }
 
