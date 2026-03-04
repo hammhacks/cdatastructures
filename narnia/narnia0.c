@@ -18,15 +18,14 @@
 
 int main(){
     long val=0x41414141;
-    printf("size of long: %d\n",sizeof(val));
-    char buf[16];
+    //printf("size of long: %d\n",sizeof(val));
+    char buf[20];
 
     printf("Correct val's value from 0x41414141 -> 0xdeadbeef!\n");
     printf("Here is your chance: ");
-    scanf("%29s",&buf);
+    scanf("%40s",&buf);
 
     printf("buf: %s\n",buf);
-    printf("val: 0x%08x\n",val);
 
     if(val==0xdeadbeef){
         //setreuid(geteuid(),geteuid());
@@ -36,7 +35,7 @@ int main(){
     else {
         printf("WAY OFF!!!!\n");
 	    int i;
-    	    for(i=0;i<30;i++)
+    	    for(i=0;i<26;i++)
             printf("buf[%d] addr: %p : val: %d\n",i,&buf[i],buf[i]);
 
             printf("The addr of long val is: %p\n",&val);
@@ -46,7 +45,7 @@ int main(){
     }
 
     int i;
-    for(i=0;i<30;i++)
+    for(i=0;i<40;i++)
 	printf("buf[%d] addr: %p : val: %x\n",i,&buf[i],buf[i]);
 
     printf("The addr of long val is: %p\n",&val);
